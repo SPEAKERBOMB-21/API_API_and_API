@@ -17,7 +17,7 @@ if prompt := st.chat_input("Say something..."):
         # We use a simple write() with the stream to keep it ultra-fast
         def stream_text():
             response = client.models.generate_content_stream(
-                model="gemini-3.1-flash-lite",
+                model="gemini-2.0-flash-lite",
                 contents=prompt
             )
             for chunk in response:
