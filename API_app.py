@@ -17,12 +17,9 @@ if prompt := st.chat_input("Say something..."):
         # We use a simple write() with the stream to keep it ultra-fast
         def stream_text():
             response = client.models.generate_content_stream(
-                model="gemini-2.0-flash-lite",
-                contents=prompt
+                model="gemini-2.0-flash",
+                contents=[{"role": "user", "parts": [{"text": prompt}]}]
             )
             for chunk in response:
-                yield chunk.text
-
-        # This built-in Streamlit function is the fastest way to show a stream
-        full_text = st.write_stream(stream_text())
-        st.session_state.messages.append({"role": "assistant", "content": full_text})
+                if chunk.text:
+                    yield chunk.text
