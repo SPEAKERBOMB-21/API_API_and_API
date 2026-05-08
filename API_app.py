@@ -1,5 +1,5 @@
 import streamlit as st
-import google.generativeai as genai
+import google as genai
 
 # Access the secret securely from Streamlit's environment
 # This replaces the manual text_input sidebar
